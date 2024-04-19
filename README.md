@@ -220,15 +220,33 @@ clean::
 
 ## Assertion/Failure Features
 There are multiple ways how you can make a test-case fail.
+The following table shows which type of assertion is supported by which type of runner.
 
 <table>
-<tr><th>Assertion</th>                              <th>SimpleRunner</th><th>SetJmpRunner</th><th>AbortRunner</th><th>ForkRunner</th></tr>
-<tr><td><code>&lt;stdlib.h&gt; longjmp()</code></td><td>no</td>          <td>yes</td>         <td>yes</td>        <td>no (not required)</td></tr>
-<tr><td><code>&lt;assert.h&gt; assert()</code></td> <td>stop</td>        <td>no</td>          <td>yes</td>        <td>yes</td></tr>
-<tr><td><code>&lt;stdlib.h&gt; abort()</code></td>  <td>stop</td>        <td>no</td>          <td>yes</td>        <td>yes</td></tr>
-<tr><td><code>&lt;stdlib.h&gt; exit()</code></td>   <td>stop</td>        <td>no</td>          <td>no</td>         <td>yes</td></tr>
-<tr><td><code>&lt;AceUnit.h&gt; assert()</code></td><td>stop</td>        <td>yes</td>         <td>yes</td>        <td>yes</td></tr>
+<tr><th>Assertion</th>                                       <th>SimpleRunner</th><th>SetJmpRunner</th><th>AbortRunner</th><th>ForkRunner</th></tr>
+<tr><td><code>&lt;stdlib.h&gt; longjmp()</code></td>         <td>no</td>          <td>yes</td>         <td>yes</td>        <td>no</td></tr>
+<tr><td><code>&lt;assert.h&gt; assert()</code></td>          <td>stop</td>        <td>no</td>          <td>yes</td>        <td>yes</td></tr>
+<tr><td><code>&lt;stdlib.h&gt; abort()</code></td>           <td>stop</td>        <td>no</td>          <td>yes</td>        <td>yes</td></tr>
+<tr><td><code>&lt;stdlib.h&gt; exit()</code></td>            <td>stop</td>        <td>no</td>          <td>no</td>         <td>yes</td></tr>
+<tr><td><code>&lt;AceUnit.h&gt; assert()</code></td>         <td>stop</td>        <td>yes</td>         <td>yes</td>        <td>yes</td></tr>
+<tr><td>abnormal test case termination (like `SEGFAULT`)</td><td>no</td>          <td>no</td>          <td>no</td>         <td>yes</td></tr>
 </table>
+
+Legend:
+* "no" means that this runner doesn't support the specified assertion type.
+  This means that this assertion type will not result in a test case fail.
+  It also means that the test execution will be aborted.
+  For example, using `exit(1)` will simply abort test execution for all runners except for the _ForkRunner_.
+* "yes" means that this runner supports the specified assertion type.
+  The assertion will result in a test case fail.
+  And the runner will continue execution with the next test case.
+* "stop" means that this runner supports the specified assertion type.
+  The assertion will result in a test case fail.
+  However, the runner will _not_ continue execution with the next test case but instead stop.
+
+The _ForkRunner_ does not support `longjmp()` as there is no need for this.
+Using `longjmp()` for assertions in a test case only serves the purpose of implementing a kind of exception handling in the absence of proper exception handling.
+The _ForkRunner_ uses POSIX `fork()` for exception handling, so using `longjmp()` or catching `SIGABORT` as a workaround to have exception handling in C is not required.
 
 ## Test Fixtures
 
