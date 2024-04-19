@@ -229,7 +229,7 @@ The following table shows which type of assertion is supported by which type of 
 <tr><td><code>&lt;stdlib.h&gt; abort()</code></td>           <td>stop</td>        <td>no</td>          <td>yes</td>        <td>yes</td></tr>
 <tr><td><code>&lt;stdlib.h&gt; exit()</code></td>            <td>stop</td>        <td>no</td>          <td>no</td>         <td>yes</td></tr>
 <tr><td><code>&lt;AceUnit.h&gt; assert()</code></td>         <td>stop</td>        <td>yes</td>         <td>yes</td>        <td>yes</td></tr>
-<tr><td>abnormal test case termination (like `SEGFAULT`)</td><td>no</td>          <td>no</td>          <td>no</td>         <td>yes</td></tr>
+<tr><td>abnormal test case termination (like <code>SIGSEGV</code>)</td><td>no</td>          <td>no</td>          <td>no</td>         <td>yes</td></tr>
 </table>
 
 Legend:
