@@ -274,6 +274,18 @@ Instead, the generator uses tools like `objdump`, `nm`, or `readelf` to extract 
 ## Dropped Features
 The previous versions of AceUnit had a number of features that have been deliberately dropped to keep things simple:
 <dl>
-<dt>Annotation-style processing</dt><dd>Previous versions of AceUnit used annotation-style processing like `A_Test`, `A_BeforeClass`, and so on. This was a bit fragile and required an extra parser. Annotations will come back once C has annotations. They're on the way, give it a few more years. This also made it possible to get rid of _Java_ for the generator and replace it with a simple shell script.</dd>
-<dt>Multiple fixture methods</dt><dd>Previous versions of AceUnit allowed for multiple setup and teardown functions per fixture. I don't think this was really used. This has been dropped to save a bit of memory.</dd>
+<dt>Annotation-style processing</dt>
+<dd>
+    Previous versions of AceUnit used annotation-style processing like <code>A_Test</code>, <code>A_BeforeClass</code>, and so on.
+    This was a bit fragile and required an extra parser.
+    Annotations will come back once C has annotations.
+    They're on the way, give it a few more years.
+    This also made it possible to get rid of <em>Java</em> for the generator and replace it with a simple shell script.
+</dd>
+<dt>Multiple fixture methods</dt>
+<dd>
+    Previous versions of AceUnit allowed for multiple setup and teardown functions per fixture.
+    I don't think this was really used.
+    This has been dropped to save a bit of memory and to make things less complicated.
+</dd>
 </dl>
