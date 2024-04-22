@@ -175,6 +175,9 @@ while getopts "b:hn:p:s:t:v" o; do
     *) usage; exit 1 ;;
     esac
 done
+if [[ -z "$strip" ]] && [[ "$(uname)" == Darwin ]] ; then
+    strip=_
+fi
 shift $((OPTIND - 1))
 fixtures=$@
 if [[ -z "$binary" ]] ; then
