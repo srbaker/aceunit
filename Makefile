@@ -20,29 +20,29 @@ PREFIX?=/usr/local/
 MANDIR?=share/man
 
 FILES_TO_INSTALL:=\
-    $(PREFIX)/bin/aceunit \
-    $(PREFIX)/include/aceunit.h \
-    $(PREFIX)/include/aceunit.mk \
-    $(PREFIX)/lib/libaceunit-abort.a \
-    $(PREFIX)/lib/libaceunit-fork.a \
-    $(PREFIX)/lib/libaceunit-setjmp.a \
-    $(PREFIX)/lib/libaceunit-simple.a \
-    $(PREFIX)/share/aceunit/nm.ac \
-    $(PREFIX)/share/aceunit/objdump.ac \
-    $(PREFIX)/share/aceunit/readelf.ac \
-    $(PREFIX)/share/doc/aceunit/copyright \
-    $(PREFIX)/$(MANDIR)/man1/aceunit.1 \
-    $(PREFIX)/$(MANDIR)/man3/aceunit.3 \
+    $(DESTDIR)$(PREFIX)/bin/aceunit \
+    $(DESTDIR)$(PREFIX)/include/aceunit.h \
+    $(DESTDIR)$(PREFIX)/include/aceunit.mk \
+    $(DESTDIR)$(PREFIX)/lib/libaceunit-abort.a \
+    $(DESTDIR)$(PREFIX)/lib/libaceunit-fork.a \
+    $(DESTDIR)$(PREFIX)/lib/libaceunit-setjmp.a \
+    $(DESTDIR)$(PREFIX)/lib/libaceunit-simple.a \
+    $(DESTDIR)$(PREFIX)/share/aceunit/nm.ac \
+    $(DESTDIR)$(PREFIX)/share/aceunit/objdump.ac \
+    $(DESTDIR)$(PREFIX)/share/aceunit/readelf.ac \
+    $(DESTDIR)$(PREFIX)/share/doc/aceunit/copyright \
+    $(DESTDIR)$(PREFIX)/$(MANDIR)/man1/aceunit.1 \
+    $(DESTDIR)$(PREFIX)/$(MANDIR)/man3/aceunit.3
 
 .PHONY: install
 ## install:	Install AceUnit for the local system (Unix/POSIX/Cygwin/MinGW).
 install: $(FILES_TO_INSTALL)
 
-$(PREFIX)/%: %
+$(DESTDIR)$(PREFIX)/%: %
 	install -d $(dir $@)
 	install $^ $@
 
-$(PREFIX)/include/aceunit.mk: include/aceunit.mk
+$(DESTDIR)$(PREFIX)/include/aceunit.mk: include/aceunit.mk
 	install -d $(dir $@)
 	sed -e 's#$${PREFIX}#$(PREFIX)#' <$< >$@
 
