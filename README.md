@@ -87,13 +87,13 @@ The following compilers are planned to be tested soon:
 * `s390x-linux-gnu`
 * `x86-dos` (bcc - Bruce's C Compiler, tested using dosbox)
 * `x86_64-unknown-linux-gnu`
-* `x86_64-apple-darwin` (Max OS X; use `aceunit.zsh` instead of `aceunit`, see `.github/workflows/clang-macos.yml`)
+* `x86_64-apple-darwin` (Mac OS X; use `aceunit.zsh` instead of `aceunit`, see `.github/workflows/clang-macos.yml`)
 * `x86_64-unknown-freebsd13.1`
 * `x86_64-unknown-haiku`
 * `x86_64-unknown-netbsd9.0` (NetBSD 9.3)
 
 > [!NOTE]
-> Mac OS users should use aceunit.zsh, and use `-s _`.
+> Mac OS users should either use `aceunit.zsh` or install a newer `bash`, as `/bin/bash` is extremely old and does not support the needed constructs.
 > The installation is currently unaware of the zsh alternative. After installation, replace `aceunit` with `aceunit.zsh`.
 
 > [!NOTE]
