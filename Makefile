@@ -45,7 +45,7 @@ $(PREFIX)/include/aceunit.mk: include/aceunit.mk
 	install -d $(dir $@)
 	sed -e 's#$${PREFIX}#$(PREFIX)#' <$< >$@
 
-.PHONY: install
+.PHONY: uninstall
 ## uninstall:	Remove AceUnit from the local system (Unix/POSIX/Cygwin/MinGW).
 uninstall:
 	$(RM) $(FILES_TO_INSTALL)
