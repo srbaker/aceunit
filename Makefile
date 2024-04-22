@@ -17,6 +17,7 @@ compiler-test-%:
 	$(MAKE) CFLAGS+="-std=$* -Werror" CVERSION:=$*
 
 PREFIX?=/usr/local/
+MANDIR?=share/man
 
 FILES_TO_INSTALL:=\
     $(PREFIX)/bin/aceunit \
@@ -30,8 +31,8 @@ FILES_TO_INSTALL:=\
     $(PREFIX)/share/aceunit/objdump.ac \
     $(PREFIX)/share/aceunit/readelf.ac \
     $(PREFIX)/share/doc/aceunit/copyright \
-    $(PREFIX)/share/man/man1/aceunit.1 \
-    $(PREFIX)/share/man/man3/aceunit.3 \
+    $(PREFIX)/$(MANDIR)/man1/aceunit.1 \
+    $(PREFIX)/$(MANDIR)/man3/aceunit.3 \
 
 .PHONY: install
 ## install:	Install AceUnit for the local system (Unix/POSIX/Cygwin/MinGW).
