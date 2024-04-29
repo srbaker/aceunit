@@ -6,6 +6,8 @@
   If you're employed, and in doubt, check with your employer or a lawyer.
 - Make sure you understand and accept the [License](LICENSE).
 
+> If you are unsure about the general section of these guidelines, check with your employer or a lawyer.
+
 ## Quality
 - Make sure there is no regression.
   There is an extensive suite of tests.
@@ -14,3 +16,6 @@
 - AceUnit uses 1TBS style with 4 spaces indentation, Unix format.
   That means no tabs (except for recipes in `Makefile`s), no CRLF, curly braces open at the end of the line.
 - Follow the [SEI CERT C Coding Standard](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard).
+
+> If you are unsure about the quality section of these guidelines, you can still submit a pull request.
+> You will receive help to meet the quality guidelines.
