@@ -13,7 +13,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: patch to zsh
-      run: ./configure.sh
-    - name: make
-      run: make CC=clang
+    - name: make using zsh instead of bash
+      run: ./configure.sh && make CC=clang
