@@ -93,8 +93,8 @@ The following compilers are planned to be tested soon:
 * `x86_64-unknown-netbsd9.0` (NetBSD 9.3)
 
 > [!NOTE]
-> Mac OS users should either use `aceunit.zsh` or install a newer `bash`, as `/bin/bash` is extremely old and does not support the needed constructs.
-> The installation is currently unaware of the zsh alternative. After installation, replace `aceunit` with `aceunit.zsh`.
+> Users on macOS should either change the interpreter in `bin/aceunit` from `bash` to `zsh` or install a newer `bash`, as `/bin/bash` in macOS is extremely old and does not support the needed constructs.
+> The shell script in `bin/aceunit` works for both, `bash` and `zsh`, but requires Bash 5 when using `bash`.
 
 > [!NOTE]
 > If you use `bcc` for `x86-dos`, run `aceunit` with the flags `-t nm -b nm86 -s _`.
@@ -256,6 +256,17 @@ The nomenclature has been updated to match that of JUnit5.
 The generator has been changed from a Java program to a shell script.
 Also, the generator no loner works on the source file, which is fragile.
 Instead, the generator uses tools like `objdump`, `nm`, or `readelf` to extract the symbol table and thus introspect the code to discover fixtures and test cases.
+
+## Trouble Shooting
+
+### Error about `declare`
+If you see the following error:
+```
+./aceunit: line 3: declare: -g: invalid option
+```
+It means that you're running the aceunit shell script with an unsupported shell.
+If you're using macOS, open the `aceunit` shell script and replace `#!/usr/bin/env bash` with `#!/usr/bin/env zsh`.
+AceUnit requires Bash 5 or zsh 5.
 
 ## Glossary
 
