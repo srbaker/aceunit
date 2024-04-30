@@ -94,6 +94,7 @@ The following compilers are planned to be tested soon:
 
 > [!NOTE]
 > Users on macOS should either change the interpreter in `bin/aceunit` from `bash` to `zsh` or install a newer `bash`, as `/bin/bash` in macOS is extremely old and does not support the needed constructs.
+> The `./configure.sh` script does exactly that, it looks at your OS and available shells, and patches a supported shell into `bin/aceunit`.
 > The shell script in `bin/aceunit` works for both, `bash` and `zsh`, but requires Bash 5 when using `bash`.
 
 > [!NOTE]
