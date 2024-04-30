@@ -33,6 +33,8 @@ esac
 #    sed -i .bak '1s|.*|#!/usr/bin/env '"$SHELL_TO_SET"'|' bin/aceunit
 #fi
 
+echo "Selecting $SHELL_TO_SET to run aceunit" 1>&2
+
 ed -s bin/aceunit <<EOF
 1s|#!/usr/bin/env [[:alnum:]]*|#!/usr/bin/env $SHELL_TO_SET|
 w
