@@ -10,10 +10,14 @@ case "$1" in
             SHELL_TO_SET=zsh
         elif [ "$(uname)" = "Linux" ]; then
             SHELL_TO_SET=bash
+        elif [ "$(uname)" = "SunOS" ]; then
+            SHELL_TO_SET=ksh
         elif hasBash5 >/dev/null 2>&1; then
             SHELL_TO_SET=bash
         elif command -v zsh >/dev/null 2>&1; then
             SHELL_TO_SET=zsh
+        elif command -v ksh >/dev/null 2>&1; then
+            SHELL_TO_SET=ksh
         else
             SHELL_TO_SET=bash
         fi
