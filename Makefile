@@ -34,6 +34,11 @@ FILES_TO_INSTALL:=\
     $(DESTDIR)$(PREFIX)/$(MANDIR)/man1/aceunit.1 \
     $(DESTDIR)$(PREFIX)/$(MANDIR)/man3/aceunit.3
 
+.PHONY: build
+## build	Build the AceUnit library without running any tests.
+build:
+	$(MAKE) -C lib libs
+
 .PHONY: install
 ## install:	Install AceUnit for the local system (Unix/POSIX/Cygwin/MinGW).
 install: $(FILES_TO_INSTALL)
