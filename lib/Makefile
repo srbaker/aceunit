@@ -61,4 +61,4 @@ clean::
 .PHONY: help
 ## help:	Print this help text.
 help:
-	@sed -n 's/^## \?//p' $(MAKEFILE_LIST)
+	@sed -En 's/^## ?//p' $(MAKEFILE_LIST)
