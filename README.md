@@ -62,6 +62,8 @@ AceUnit needs the following things to work:
   For your work you can continue to use any shell you like.
   Just the aceunit script itself needs `bash` version 5, `ksh`, or `zsh` to run.
   Package maintainers on systems that do not support one-of-n dependencies should choose the one that's more likely to be present, for example, bash 5 on Linux, ksh on Solaris, or zsh on macOS.
+* GNU make 3.81 or newer if you want to build AceUnit yourself using the existing Makefiles.
+  On some systems, like BSD, the binary name for GNU make usually is `gmake`, not `make`.
 * A tool that can extract a symbol table from an object file, like `nm`, `objdump`, or `readelf`.
   Package maintainers on systems that do not support one-of-n dependencies should choose the tool that's most likely to be present.
 * A C compiler suite.
