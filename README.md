@@ -57,11 +57,11 @@ You could name functions like `HeapTest_beforeAll()`, `HeapTest_beforeEach()`, a
 
 ## Prerequisites
 AceUnit needs the following things to work:
-* `bash` version 5 or `zsh`.
+* `bash` version 5, `ksh`, or `zsh`.
   This doesn't affect your work.
   For your work you can continue to use any shell you like.
-  Just the aceunit script itself needs `bash` version 5 or `zsh` to run.
-  Package maintainers on systems that do not support one-of-n dependencies should choose the one that's more likely to be present, for example, bash 5 on Linux or zsh on macOS.
+  Just the aceunit script itself needs `bash` version 5, `ksh`, or `zsh` to run.
+  Package maintainers on systems that do not support one-of-n dependencies should choose the one that's more likely to be present, for example, bash 5 on Linux, ksh on Solaris, or zsh on macOS.
 * A tool that can extract a symbol table from an object file, like `nm`, `objdump`, or `readelf`.
   Package maintainers on systems that do not support one-of-n dependencies should choose the tool that's most likely to be present.
 * A C compiler suite.
@@ -99,7 +99,7 @@ The following compilers are planned to be tested soon:
 * `s390x-linux-gnu`
 * `x86-dos` (bcc - Bruce's C Compiler, tested using dosbox)
 * `x86_64-unknown-linux-gnu`
-* `x86_64-apple-darwin` (Mac OS X; use `aceunit.zsh` instead of `aceunit`, see `.github/workflows/clang-macos.yml`)
+* `x86_64-apple-darwin` (Mac OS X; run ./configure first to switch aceunit to zsh, see `.github/workflows/clang-macos.yml`)
 * `x86_64-unknown-freebsd13.1`
 * `x86_64-unknown-haiku`
 * `x86_64-unknown-netbsd9.0` (NetBSD 9.3)
@@ -107,7 +107,7 @@ The following compilers are planned to be tested soon:
 > [!NOTE]
 > Users on macOS should either change the interpreter in `bin/aceunit` from `bash` to `zsh` or install a newer `bash`, as `/bin/bash` in macOS is extremely old and does not support the needed constructs.
 > The `./configure.sh` script does exactly that, it looks at your OS and available shells, and patches a supported shell into `bin/aceunit`.
-> The shell script in `bin/aceunit` works for both, `bash` and `zsh`, but requires Bash 5 when using `bash`.
+> The shell script in `bin/aceunit` works for `bash`, `ksh`, and `zsh`, but requires Bash 5 when using `bash`.
 
 > [!NOTE]
 > If you use `bcc` for `x86-dos`, run `aceunit` with the flags `-t nm -b nm86 -s _`.
@@ -278,7 +278,7 @@ If you see the following error:
 ./aceunit: line 3: declare: -g: invalid option
 ```
 It means that you're running the aceunit shell script with an unsupported shell.
-AceUnit requires Bash 5 or zsh 5.
+AceUnit requires Bash 5, ksh, or zsh 5.
 If you're using macOS, open the `aceunit` shell script and replace `#!/usr/bin/env bash` with `#!/usr/bin/env zsh`.
 You can either do that replacement yourself, or you can use the `./configure.sh` shell script to do that.
 

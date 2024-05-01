@@ -1,22 +1,22 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ksh
 
-declare -g prefix
-declare -g strip
-declare -g binary
-declare -g tool
-declare -g name
-declare -g -A beforeAll afterAll beforeEach afterEach testcases
-declare -g symbols
-declare -g fixtures
-declare -g -A tools
+typeset prefix
+typeset strip
+typeset binary
+typeset tool
+typeset name
+typeset -A beforeAll afterAll beforeEach afterEach testcases
+typeset symbols
+typeset fixtures
+typeset -A tools
 
 tool=objdump
 name=fixtures
 
+PROG=$0
+
 if [ -n "$ZSH_VERSION" ]; then
     setopt shwordsplit
-
-    PROG=$ZSH_SCRIPT
 
     loadToolPlugins() {
         for ac in $(cd "$(dirname "$PROG")" ; pwd -P)/../share/aceunit/*.ac ; do
@@ -36,8 +36,6 @@ if [ -n "$ZSH_VERSION" ]; then
         echo ${(k)tools}
     }
 elif [ -n "$BASH_VERSION" ]; then
-    PROG=$0
-
     loadToolPlugins() {
         for ac in $(readlink -f $(dirname $PROG)/../share/aceunit)/*.ac ; do
             source $ac
@@ -46,6 +44,24 @@ elif [ -n "$BASH_VERSION" ]; then
 
     isToolSupported() {
         if [[ $(LC_ALL=C type -t getSymbols_${tool}) == function ]] ; then
+            return 0
+        else
+            return 1
+        fi
+    }
+
+    supportedTools() {
+        echo ${!tools[@]}
+    }
+elif [ -n "$KSH_VERSION" ]; then
+    loadToolPlugins() {
+        for ac in $(cd "$(dirname "$PROG")" ; pwd -P)/../share/aceunit/*.ac ; do
+            source $ac
+        done
+    }
+
+    isToolSupported() {
+        if typeset -f getSymbols_${tool} >/dev/null ; then
             return 0
         else
             return 1

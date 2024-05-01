@@ -35,7 +35,7 @@ test_unknown_option: export SHELLOPTS:=$(if $(SHELLOPTS),$(SHELLOPTS):)pipefail:
 .ONESHELL: test_unknown_option
 #	diff <<<"$(ACEUNIT): illegal option -- x${NL}Usage: $(ACEUNIT) [OPTION]... OBJECT_FILE..." - <(LC_ALL=C $(ACEUNIT) -x 2>&1 >/dev/null)
 test_unknown_option:
-	echo $$(LC_ALL=C $(ACEUNIT) -x 2>&1 >/dev/null) | grep '$(ACEUNIT):\([0-9]\+:\)\? \(bad\|illegal\) option:\? -\(- \)\?x'
+	echo $$(LC_ALL=C $(ACEUNIT) -x 2>&1 >/dev/null) | grep '$(ACEUNIT):\([0-9]\+:\)\? \(\(bad\|illegal\) option:\? -\(- \)\?x\|-x: unknown option\)'
 	diff /dev/null <($(ACEUNIT) -x 2>/dev/null)
 	! $(ACEUNIT) -x $^ 2>/dev/null
 

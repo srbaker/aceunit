@@ -18,7 +18,7 @@ case "$1" in
             SHELL_TO_SET=bash
         fi
         ;;
-    bash|zsh)
+    bash|ksh|zsh)
         SHELL_TO_SET=$1
         ;;
     *)
