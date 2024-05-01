@@ -50,9 +50,21 @@ For each fixture (object file with test cases), AceUnit looks for functions that
 * `test()` (n) Test cases
 * `afterEach()` (0‥1) Teardown per test case
 * `afterAll()` (0‥1) One-time Teardown
+
 In addition to that, functions can be prefixed with a user-defined prefix.
 For example, if you have modules and use a prefix convention, you can use this in your tests, too.
 You could name functions like `HeapTest_beforeAll()`, `HeapTest_beforeEach()`, and `HeapTest_test1()` by adding `-p HeapTest_` to the command line options of `aceunit`.
+
+## Prerequisites
+AceUnit needs the following things to work:
+* `bash` version 5 or `zsh`.
+  This doesn't affect your work.
+  For your work you can continue to use any shell you like.
+  Just the aceunit script itself needs `bash` version 5 or `zsh` to run.
+  Package maintainers on systems that do not support one-of-n dependencies should choose the one that's more likely to be present, for example, bash 5 on Linux or zsh on macOS.
+* A tool that can extract a symbol table from an object file, like `nm`, `objdump`, or `readelf`.
+  Package maintainers on systems that do not support one-of-n dependencies should choose the tool that's most likely to be present.
+* A C compiler suite.
 
 ## Compilers
 
@@ -266,8 +278,9 @@ If you see the following error:
 ./aceunit: line 3: declare: -g: invalid option
 ```
 It means that you're running the aceunit shell script with an unsupported shell.
-If you're using macOS, open the `aceunit` shell script and replace `#!/usr/bin/env bash` with `#!/usr/bin/env zsh`.
 AceUnit requires Bash 5 or zsh 5.
+If you're using macOS, open the `aceunit` shell script and replace `#!/usr/bin/env bash` with `#!/usr/bin/env zsh`.
+You can either do that replacement yourself, or you can use the `./configure.sh` shell script to do that.
 
 ## Glossary
 
