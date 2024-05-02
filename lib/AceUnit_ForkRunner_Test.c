@@ -29,8 +29,9 @@ int main(void) {
     assert(result.testCaseCount == 2);
     assert(result.successCount == 1);
     assert(result.failureCount == 1);
-    // Do not assert these, they're modified in a child process, not here.
-    //assert(ran_test_failing);
-    //assert(ran_test_ok);
+    /* Do not assert these, they're modified in a child process, not here.
+     * assert(ran_test_failing);
+     * assert(ran_test_ok);
+     */
     return EXIT_SUCCESS;
 }
