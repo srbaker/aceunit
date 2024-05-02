@@ -56,6 +56,33 @@ $(DESTDIR)$(PREFIX)/include/aceunit.mk: include/aceunit.mk
 uninstall:
 	$(RM) $(FILES_TO_INSTALL)
 
+.PHONY: dist
+## dist:	Creates source and binary distribution archives.
+dist: dist-src dist-bin
+
+.PHONY: dist-src
+## dist-src:	Creates source distribution archives.
+dist-src: archive:=aceunit-3.0.0-src
+dist-src:
+	mkdir -p dist-src/
+	git archive -o dist-src/$(archive).tar --prefix $(archive)/ HEAD .
+	<dist-src/$(archive).tar gzip  -9 >dist-src/$(archive).tar.gz
+	<dist-src/$(archive).tar bzip2 -9 >dist-src/$(archive).tar.bz2
+	<dist-src/$(archive).tar xz    -9 >dist-src/$(archive).tar.xz
+
+.PHONY: dist-bin
+## dist-bin:	Creates a binary distribution archive.
+dist-bin: os:=$(shell uname -s)
+dist-bin: hw:=$(shell uname -m)
+dist-bin: archive:=aceunit-3.0.0-bin-$(os)-$(hw)
+dist-bin:
+	mkdir -p dist-bin/$(archive)/
+	$(MAKE) DESTDIR=dist-bin/$(archive)/ PREFIX=/usr/ install
+	tar cfC dist-bin/$(archive).tar dist-bin/ $(archive)/
+	<dist-bin/$(archive).tar gzip  -9 >dist-bin/$(archive).tar.gz
+	<dist-bin/$(archive).tar bzip2 -9 >dist-bin/$(archive).tar.bz2
+	<dist-bin/$(archive).tar xz    -9 >dist-bin/$(archive).tar.xz
+
 .PHONY: help
 ## help:		Print this help text.
 help:
