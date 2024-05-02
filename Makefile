@@ -43,9 +43,13 @@ build:
 ## install:	Install AceUnit for the local system (Unix/POSIX/Cygwin/MinGW).
 install: $(FILES_TO_INSTALL)
 
-$(DESTDIR)$(PREFIX)/%: %
+$(DESTDIR)$(PREFIX)/bin/aceunit: bin/aceunit
 	install -d $(dir $@)
 	install $^ $@
+
+$(DESTDIR)$(PREFIX)/%: %
+	install -d $(dir $@)
+	install -m 644 $^ $@
 
 $(DESTDIR)$(PREFIX)/include/aceunit.mk: include/aceunit.mk
 	install -d $(dir $@)
