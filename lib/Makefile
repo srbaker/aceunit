@@ -33,16 +33,18 @@ libaceunit-setjmp.a: AceUnit_Main.o AceUnit_Runner.o AceUnit_SetJmpRunner.o
 %.a:
 	$(AR) $(ARFLAGS) $@ $?
 
-test:: AceUnit_SimpleRunner_Test
+test: test_SimpleRunner test_AbortRunner test_ForkRunner test_SetJmpRunner
+
+test_SimpleRunner: AceUnit_SimpleRunner_Test
 	./AceUnit_SimpleRunner_Test
 
-test:: AceUnit_AbortRunner_Test
+test_AbortRunner: AceUnit_AbortRunner_Test
 	./AceUnit_AbortRunner_Test
 
-test:: AceUnit_ForkRunner_Test
+test_ForkRunner: AceUnit_ForkRunner_Test
 	./AceUnit_ForkRunner_Test
 
-test:: AceUnit_SetJmpRunner_Test
+test_SetJmpRunner: AceUnit_SetJmpRunner_Test
 	./AceUnit_SetJmpRunner_Test
 
 AceUnit_SimpleRunner_Test: AceUnit_SimpleRunner_Test.o libaceunit-simple.a
