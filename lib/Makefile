@@ -48,8 +48,8 @@ test_SetJmpRunner: AceUnit_SetJmpRunner_Test
 	./AceUnit_SetJmpRunner_Test
 
 AceUnit_SimpleRunner_Test: AceUnit_SimpleRunner_Test.o libaceunit-simple.a
-AceUnit_AbortRunner_Test: AceUnit_AbortRunner_Test.o libaceunit-abort.a
-AceUnit_ForkRunner_Test: AceUnit_ForkRunner_Test.o libaceunit-fork.a
+AceUnit_AbortRunner_Test: AceUnit_AbortRunner_Test.o AceUnit_AbortRunner_Fixture.o libaceunit-abort.a
+AceUnit_ForkRunner_Test: AceUnit_ForkRunner_Test.o AceUnit_ForkRunner_Fixture.o libaceunit-fork.a
 AceUnit_SetJmpRunner_Test: AceUnit_SetJmpRunner_Test.o AceUnit_SetJmpRunner_Fixture.o libaceunit-setjmp.a
 
 %_Fixture.c: %_Test.o
