@@ -12,11 +12,9 @@ void AceUnit_fail(void) {
 
 static void nop(void) {}
 
-bool success = false;
-
 bool runCatching(void(*code)(void)) {
+    bool success = false;
     jmp_buf env; AceUnit_env = &env;
-    success = false;
     if (!setjmp(env)) {
         (code ? code : nop)();
         success = true;
