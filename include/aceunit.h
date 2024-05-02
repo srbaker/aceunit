@@ -92,11 +92,12 @@ extern bool runCatching(void(*code)(void));
 extern void AceUnit_fail(void);
 
 #ifndef assert
-#include <stdio.h>
 /** Assert a condition.
  * If the condition is \c false, this will call #AceUnit_fail().
  * @param cond  Condition to assert.
  */
+#if defined(__STDC_HOSTED__) && __STDC_HOSTED__ == 1
+#include <stdio.h>
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
 #define assert(cond) \
     do { \
@@ -110,6 +111,14 @@ extern void AceUnit_fail(void);
     do { \
         if (!(cond)) { \
             fprintf(stderr, "%s:%d: Assertion `%s' failed.\n", __FILE__, __LINE__, #cond); \
+            AceUnit_fail(); \
+        } \
+    } while (false)
+#endif
+#else
+#define assert(cond) \
+    do { \
+        if (!(cond)) { \
             AceUnit_fail(); \
         } \
     } while (false)
