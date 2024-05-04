@@ -18,6 +18,7 @@ compiler-test-%:
 
 PREFIX?=/usr/local/
 MANDIR?=share/man
+VERSION:=$(shell cat VERSION)
 
 FILES_TO_INSTALL:=\
     $(DESTDIR)$(PREFIX)/bin/aceunit \
@@ -66,7 +67,7 @@ dist: dist-src dist-bin
 
 .PHONY: dist-src
 ## dist-src:	Creates source distribution archives.
-dist-src: archive:=aceunit-3.0.0-src
+dist-src: archive:=aceunit-$(VERSION)-src
 dist-src:
 	mkdir -p dist-src/
 	git archive -o dist-src/$(archive).tar --prefix $(archive)/ HEAD .
@@ -78,7 +79,7 @@ dist-src:
 ## dist-bin:	Creates a binary distribution archive.
 dist-bin: os:=$(shell uname -s)
 dist-bin: hw:=$(shell uname -m)
-dist-bin: archive:=aceunit-3.0.0-bin-$(os)-$(hw)
+dist-bin: archive:=aceunit-$(VERSION)-bin-$(os)-$(hw)
 dist-bin: TARCFLAGS:=$(if $(filter bsdtar,$(firstword $(shell tar --version))),--uid=0 --gid=0,--owner=0 --group=0 --mode='og-w')
 dist-bin:
 	mkdir -p dist-bin/$(archive)/
