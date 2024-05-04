@@ -1,4 +1,4 @@
-# AceUnit-3
+# AceUnit 3.0.0
 
 Welcome to AceUnit, the Advanced C and Embedded Unit test framework.
 AceUnit is a comfortable (test discovery!) unit test framework for C, in the best tradition of xUnit frameworks (like JUnit).
