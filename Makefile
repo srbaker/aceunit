@@ -79,10 +79,11 @@ dist-src:
 dist-bin: os:=$(shell uname -s)
 dist-bin: hw:=$(shell uname -m)
 dist-bin: archive:=aceunit-3.0.0-bin-$(os)-$(hw)
+dist-bin: TARCFLAGS:=$(if $(filter bsdtar,$(firstword $(shell tar --version))),--uid=0 --gid=0,--owner=0 --group=0 --mode='og-w')
 dist-bin:
 	mkdir -p dist-bin/$(archive)/
 	$(MAKE) DESTDIR=dist-bin/$(archive)/ PREFIX=/usr/ install
-	tar cfC dist-bin/$(archive).tar dist-bin/ --owner=0 --group=0 --mode='og-w' $(archive)/
+	tar $(TARCFLAGS) -c -f dist-bin/$(archive).tar -C dist-bin/ $(archive)/
 	<dist-bin/$(archive).tar gzip  -9 >dist-bin/$(archive).tar.gz
 	<dist-bin/$(archive).tar bzip2 -9 >dist-bin/$(archive).tar.bz2
 	<dist-bin/$(archive).tar xz    -9 >dist-bin/$(archive).tar.xz
