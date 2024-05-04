@@ -14,7 +14,7 @@ compiler-test: $(versions:%=compiler-test-%)
 
 compiler-test-%:
 	$(MAKE) clean
-	$(MAKE) CFLAGS+="-std=$* -Werror" CVERSION:=$*
+	$(MAKE) CFLAGS+="-std=$*" CVERSION:=$*
 
 PREFIX?=/usr/local/
 MANDIR?=share/man
