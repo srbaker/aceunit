@@ -6,7 +6,7 @@ include recurse.mk
 ## clean:		Remove all generated files.
 ## lib-all:	Build and self-test the AceUnit library.
 
-test-all examples-all install: lib-all
+test-all examples-all: lib-all
 
 versions:=c90 c99 c11 c17 c2x gnu90 gnu99 gnu11 gnu17 gnu2x
 ## compiler-test:	Test AceUnit with different versions of C.
@@ -58,6 +58,9 @@ $(DESTDIR)$(PREFIX)/%: %
 $(DESTDIR)$(PREFIX)/include/aceunit.mk: include/aceunit.mk
 	install -d $(dir $@)
 	sed -e 's#$${PREFIX}#$(PREFIX)#' <$< >$@
+
+lib/%:
+	$(MAKE) -C lib/ $*
 
 .PHONY: uninstall
 ## uninstall:	Remove AceUnit from the local system (Unix/POSIX/Cygwin/MinGW).
