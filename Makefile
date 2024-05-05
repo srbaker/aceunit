@@ -44,13 +44,16 @@ build:
 ## install:	Install AceUnit for the local system (Unix/POSIX/Cygwin/MinGW).
 install: $(FILES_TO_INSTALL)
 
+INSTALL_SCRIPT:=$(or $(BSD_INSTALL_SCRIPT),install)
+INSTALL_DATA:=$(or $(BSD_INSTALL_DATA),install -m 644)
+
 $(DESTDIR)$(PREFIX)/bin/aceunit: bin/aceunit
 	install -d $(dir $@)
-	install $^ $@
+	$(INSTALL_SCRIPT) $^ $@
 
 $(DESTDIR)$(PREFIX)/%: %
 	install -d $(dir $@)
-	install -m 644 $^ $@
+	$(INSTALL_DATA) $^ $@
 
 $(DESTDIR)$(PREFIX)/include/aceunit.mk: include/aceunit.mk
 	install -d $(dir $@)
